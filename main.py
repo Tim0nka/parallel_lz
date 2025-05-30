@@ -16,6 +16,3 @@ def run_process():
     p = Process(target=process.main)
     p.start()
     p.join()
-
-if __name__ == "__main__":
-    main()
