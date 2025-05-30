@@ -1,37 +1,40 @@
 import asyncio
-import time
 import random
 
 number = 1
 
 async def fun1():
     global number
-    jump = random.randint(1,10)
-    number=+-jump
-    await asyncio.sleep(0.1)
-    print(number)
-    
+    while True:
+        jump = random.randint(1, 1000)
+        number = min(number + jump, 1_000_000)
+        await asyncio.sleep(0.1)
+        print(f"fun1: {number}")
 
+async def fun2():
+    global number
+    while True:
+        jump = random.randint(1, 1000)
+        number = min(number + jump, 1_000_000)
+        await asyncio.sleep(0.1)
+        print(f"fun2: {number}")
 
-async def fun2(x):
-    print(random.randint(1,10))
-    await asyncio.sleep(0.1)
-    
-
-
+async def fun3():
+    global number
+    while True:
+        jump = random.randint(1, 1000)
+        number = min(number + jump, 1_000_000)
+        await asyncio.sleep(0.1)
+        print(f"fun3: {number}")
 
 async def main():
-    print(random.randint(1,10))
-    await asyncio.sleep(0.1)
-    
+    start_time = asyncio.get_event_loop().time()
+    tasks = [asyncio.create_task(fun1()), asyncio.create_task(fun2()), asyncio.create_task(fun3())]
 
+    while asyncio.get_event_loop().time() - start_time < 15:
+        await asyncio.sleep(0.1)
 
-    await task1
-    await task2
-
-
-print(time.strftime('%X'))
+    for task in tasks:
+        task.cancel()
 
 asyncio.run(main())
-
-print(time.strftime('%X'))
