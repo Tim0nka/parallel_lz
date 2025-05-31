@@ -37,7 +37,7 @@ def consumer(queue, lock):
             print('{} got {}'.format(os.getpid(), name))
 
 
-if __name__ == '__main__':
+def main():
     
 
     names = [['Master Shake', 'Meatwad', 'Frylock', 'Carl'],

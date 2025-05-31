@@ -5,14 +5,19 @@ import asynhron
 import process
 from multiprocessing import Process
 
-def run_potok():
+def pusk_potok():
     potok.posled(potok.ips)
     potok.potoki(potok.ips)
 
-async def run_asynhron():
+async def pusk_asynhron():
     await asynhron.main()
 
-def run_process():
+def pusk_process():
     p = Process(target=process.main)
     p.start()
     p.join()
+
+if __name__ == "__main__":
+    pusk_potok()
+    asyncio.run(pusk_asynhron())
+    pusk_process()
